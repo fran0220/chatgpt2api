@@ -1,0 +1,12 @@
+services:
+  chatgpt2api:
+    build: .
+    ports:
+      - "${HOST_PORT:-8200}:${SERVER_PORT:-8200}"
+    volumes:
+      - ./data:/app/data
+    environment:
+      TZ: Asia/Shanghai
+      SERVER_HOST: 0.0.0.0
+      SERVER_PORT: ${SERVER_PORT:-8200}
+    restart: unless-stopped

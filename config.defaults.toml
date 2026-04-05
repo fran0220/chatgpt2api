@@ -1,0 +1,29 @@
+# ==================== 应用设置 ====================
+[app]
+# API 调用密钥（逗号分隔支持多个）
+api_key = ""
+# 管理密钥
+app_key = "chatgpt2api"
+# 图片默认返回格式 (url / b64_json)
+image_format = "url"
+
+# ==================== ChatGPT 配置 ====================
+[chatgpt]
+# 图片生成模型
+model = "gpt-5-3"
+# SSE 超时（秒）
+sse_timeout = 300
+# 异步轮询间隔（秒）
+poll_interval = 3
+# 异步轮询最大等待（秒）
+poll_max_wait = 180
+
+# ==================== Token 池管理 ====================
+[token]
+# 连续失败阈值
+fail_threshold = 5
+
+# ==================== 日志配置 ====================
+[log]
+# 是否记录所有请求
+log_all_requests = false

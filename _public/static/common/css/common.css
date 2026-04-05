@@ -1,0 +1,146 @@
+:root {
+  --bg: #fafafa;
+  --fg: #000;
+  --accents-1: #eaeaea;
+  --accents-2: #999;
+  --accents-3: #888;
+  --accents-4: #666;
+  --accents-5: #444;
+  --accents-6: #333;
+  --accents-7: #111;
+  --border: #eaeaea;
+  --success: #0070f3;
+  --error: #e00;
+  --warning: #f5a623;
+  --radius: 6px;
+}
+
+body {
+  font-family: 'Geist Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-mono {
+  font-family: 'Geist Mono', monospace;
+}
+
+.table-empty {
+  color: var(--accents-4);
+  font-size: 12px;
+  font-weight: 400;
+  padding: 48px 0;
+  text-align: center;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.geist-input {
+  width: 100%;
+  font-size: 0.8125rem;
+  border-radius: 0.5rem;
+  padding: 0.35rem 0.5rem;
+  outline: none;
+  border: 1px solid #e6e6e6;
+  transition: all 0.2s;
+  background: #fff;
+  color: var(--accents-7);
+}
+
+.geist-input:focus {
+  border-color: #bdbdbd;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.03);
+}
+
+.geist-input::placeholder {
+  color: var(--accents-3);
+}
+
+.geist-button {
+  height: 32px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background-color: #000;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+}
+
+.geist-button:hover { opacity: 0.9; }
+.geist-button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.geist-button-outline {
+  height: 32px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background-color: transparent;
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.geist-button-outline:hover { border-color: #000; }
+
+.geist-button-danger {
+  height: 32px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background-color: #e00;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+}
+
+.geist-button-danger:hover { opacity: 0.9; }
+
+.stat-card {
+  background: #fff;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 14px 18px;
+  transition: all 0.2s;
+}
+
+.stat-card:hover { border-color: #000; }
+
+.stat-value {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--accents-4);
+  margin-top: 2px;
+}
