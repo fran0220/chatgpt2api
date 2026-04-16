@@ -608,7 +608,8 @@ func (c *ChatGPTClient) parseSSE(ctx context.Context, reader io.Reader) ([]Image
 
 // extractImages extracts image results from a single SSE message.
 func (c *ChatGPTClient) extractImages(ctx context.Context, msg *sseMessage, conversationID string) []ImageResult {
-	if msg.Author.Role != "assistant" {
+	// Images can appear in "assistant" or "tool" messages, never in "user" or "system"
+	if msg.Author.Role == "user" || msg.Author.Role == "system" {
 		return nil
 	}
 	if msg.Content.ContentType != "multimodal_text" {
