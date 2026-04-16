@@ -608,7 +608,13 @@ func (c *ChatGPTClient) parseSSE(ctx context.Context, reader io.Reader) ([]Image
 
 // extractImages extracts image results from a single SSE message.
 func (c *ChatGPTClient) extractImages(ctx context.Context, msg *sseMessage, conversationID string) []ImageResult {
-	if msg.Content.ContentType != "multimodal_text" || msg.Status != "finished_successfully" {
+	if msg.Author.Role != "assistant" {
+		return nil
+	}
+	if msg.Content.ContentType != "multimodal_text" {
+		return nil
+	}
+	if msg.Status != "finished_successfully" {
 		return nil
 	}
 
@@ -626,6 +632,8 @@ func (c *ChatGPTClient) extractImages(ctx context.Context, msg *sseMessage, conv
 		if fileID == "" {
 			continue
 		}
+
+		log.Printf("[extract] found image: pointer=%s gen_id=%s", part.AssetPointer, part.Metadata.Dalle.GenID)
 
 		// sediment:// uses attachment API, file-service:// uses files API
 		var downloadURL string
@@ -711,6 +719,9 @@ func (c *ChatGPTClient) fetchConversationImages(ctx context.Context, conversatio
 		if node.Message == nil {
 			continue
 		}
+		log.Printf("[poll] message role=%s status=%s content_type=%s parts=%d",
+			node.Message.Author.Role, node.Message.Status,
+			node.Message.Content.ContentType, len(node.Message.Content.Parts))
 		images = append(images, c.extractImages(ctx, node.Message, conversationID)...)
 	}
 
